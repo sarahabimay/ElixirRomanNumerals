@@ -1,22 +1,26 @@
 defmodule ROMAN_NUMERALS do
   def convert(0), do: ""
-  def convert(n) when n<=3 do
-   "I" <> convert(n-1)
+  def convert(number) when number<=3 do
+    convo(number, ["I", 1])
   end
 
-  def convert(n) when n>=10 do
-    "X" <> convert(n-10)
+  def convert(number) when number>=10 do
+    convo(number, ["X", 10])
   end
 
-  def convert(n) when n>=9 do
-    "IX" <> convert(n-9)
+  def convert(number) when number>=9 do
+    convo(number, ["IX", 9])
   end
 
-  def convert(n) when n>=5 do
-    "V" <> convert(n-5)
+  def convert(number) when number>=5 do
+    convo(number, ["V", 5])
   end
 
-  def convert(n) when n>=4 do
-    "IV" <> convert(n-4)
+  def convert(number) when number>=4 do
+    convo(number, ["IV", 4])
+  end
+
+  def convo(number, [roman, arabic]) do
+    roman <> convert(number-arabic)
   end
 end
