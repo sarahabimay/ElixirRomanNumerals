@@ -1,4 +1,4 @@
-defmodule ROMAN_NUMERALS.Mixfile do
+defmodule RomanNumerals.Mixfile do
   use Mix.Project
 
   def project do

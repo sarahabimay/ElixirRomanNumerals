@@ -1,26 +1,25 @@
-defmodule ROMAN_NUMERALS do
-  def convert(0), do: ""
-  def convert(number) when number<=3 do
-    convo(number, ["I", 1])
+defmodule RomanNumerals do
+  @arabic_romans_map [
+    ["X", 10],
+    ["IX", 9],
+    ["V", 5],
+    ["IV", 4],
+    ["I", 1]
+  ]
+
+  def convert(number) do
+    convert(number, @arabic_romans_map)
   end
 
-  def convert(number) when number>=10 do
-    convo(number, ["X", 10])
+  def convert(number, _) when number<1 do
+    ""
   end
 
-  def convert(number) when number>=9 do
-    convo(number, ["IX", 9])
+  def convert(number, [[roman, arabic] | _] = roman_arabic_map) when number>=arabic do
+    roman <> convert(number-arabic, roman_arabic_map)
   end
 
-  def convert(number) when number>=5 do
-    convo(number, ["V", 5])
-  end
-
-  def convert(number) when number>=4 do
-    convo(number, ["IV", 4])
-  end
-
-  def convo(number, [roman, arabic]) do
-    roman <> convert(number-arabic)
+  def convert(number, [_ | numerals_shifted]) do
+    convert(number, numerals_shifted)
   end
 end
